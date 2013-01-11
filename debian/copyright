@@ -1,0 +1,22 @@
+This work was packaged for Debian by:
+
+    Vladimir Lazarenko <vllazarenko@ebay.com> on Fri, 11 Jan 2013 12:41:05 +0100
+
+It was downloaded from:
+
+    http://code.google.com/p/credis/
+
+Upstream Author(s):
+
+     Jonas Romfelt.
+
+License:
+
+    New BSD.
+
+The Debian packaging is:
+
+    Copyright (C) 2013 Vladimir Lazarenko <vllazarenko@ebay.com>
+    and is licensed under the GPL version 3,
+    see "/usr/share/common-licenses/GPL-3".
+

@@ -1,0 +1,37 @@
+Source: libcredis
+Priority: extra
+Maintainer: Vladimir Lazarenko <vllazarenko@ebay.com>
+Build-Depends: debhelper (>= 7.0.50~)
+Standards-Version: 3.9.1
+Section: libs
+Homepage: http://code.google.com/p/credis/
+#Vcs-Git: git://git.debian.org/collab-maint/libcredis.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/libcredis.git;a=summary
+
+Package: libcredis0-dev
+Section: libdevel
+Architecture: any
+Depends:
+ libcredis0 (= ${binary:Version}), ${misc:Depends}
+Description: Development files for libmcredis
+ Credis is a client library in plain C for communicating with Redis servers. 
+ Redis is a high performance key-value database, refer to Redis project page 
+ for more information.
+ Credis aims to be fast and minimalistic with respect to memory usage. 
+ It supports connections to multiple Redis servers. It runs on Linux, OS X,
+ Windows, FreeBSD and should run on most POSIX like systems. It is 
+ released under the New BSD License.
+
+Package: libcredis0
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Client library in C for communicating with Redis servers.
+ Credis is a client library in plain C for communicating with Redis servers. 
+ Redis is a high performance key-value database, refer to Redis project page 
+ for more information.
+ Credis aims to be fast and minimalistic with respect to memory usage. 
+ It supports connections to multiple Redis servers. It runs on Linux, OS X,
+ Windows, FreeBSD and should run on most POSIX like systems. It is 
+ released under the New BSD License.
+

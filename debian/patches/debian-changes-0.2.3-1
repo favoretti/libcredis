@@ -1,0 +1,58 @@
+Description: Upstream changes introduced in version 0.2.3-1
+ This patch has been created by dpkg-source during the package build.
+ Here's the last changelog entry, hopefully it gives details on why
+ those changes were made:
+ .
+ libcredis (0.2.3-1) unstable; urgency=low
+ .
+   * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+ .
+ The person named in the Author field signed this changelog entry.
+Author: Vladimir Lazarenko <vllazarenko@ebay.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- libcredis-0.2.3.orig/Makefile
++++ libcredis-0.2.3/Makefile
+@@ -11,7 +11,7 @@ else
+ endif
+ 
+ # targets to build with 'make all'
+-TARGETS = credis-test libcredis.a libcredis.so
++TARGETS = credis-test libcredis.a libcredis.so.0
+ 
+ all: $(TARGETS)
+ 
+@@ -21,13 +21,19 @@ credis-test: credis-test.o libcredis.a
+ libcredis.a: credis.o
+ 	$(AR) -cvq $@ $^
+ 
+-libcredis.so: credis.o
++libcredis.so.0: credis.o
+ 	$(CC) $(SHAREDLIB_LINK_OPTIONS)$@ -o $@ $^
+ 
+ credis.o: credis.c credis.h Makefile
+ 	$(CC) -c -fPIC $(CFLAGS) $(CPPFLAGS) -o $@ credis.c
+ 
+ install:
+-	@echo "Installing library (to be done)"
++	install -d $(DESTDIR)/usr
++	install -d $(DESTDIR)/usr/lib
++	install -d $(DESTDIR)/usr/include
++	install -m644 libcredis.so.0 $(DESTDIR)/usr/lib
++	install -m644 libcredis.a $(DESTDIR)/usr/lib
++	install -m644 credis.h $(DESTDIR)/usr/include
++	(cd $(DESTDIR)/usr/lib && { ln -s -f libcredis.so.0 libcredis.so || { rm -f libcredis.so && ln -s libcredis.so.0 libcredis.so; }; })
+ clean:
+ 	rm -f *.o *~ $(TARGETS)

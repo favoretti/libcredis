@@ -1,0 +1,5 @@
+libcredis (0.2.3-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Vladimir Lazarenko <vllazarenko@ebay.com>  Fri, 11 Jan 2013 12:41:05 +0100
