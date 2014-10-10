@@ -11,7 +11,7 @@ else
 endif
 
 # targets to build with 'make all'
-TARGETS = credis-test libcredis.a libcredis.so.0
+TARGETS = credis-test libcredis.a libcredis.so
 
 all: $(TARGETS)
 
@@ -21,19 +21,13 @@ credis-test: credis-test.o libcredis.a
 libcredis.a: credis.o
 	$(AR) -cvq $@ $^
 
-libcredis.so.0: credis.o
+libcredis.so: credis.o
 	$(CC) $(SHAREDLIB_LINK_OPTIONS)$@ -o $@ $^
 
 credis.o: credis.c credis.h Makefile
 	$(CC) -c -fPIC $(CFLAGS) $(CPPFLAGS) -o $@ credis.c
 
 install:
-	install -d $(DESTDIR)/usr
-	install -d $(DESTDIR)/usr/lib
-	install -d $(DESTDIR)/usr/include
-	install -m644 libcredis.so.0 $(DESTDIR)/usr/lib
-	install -m644 libcredis.a $(DESTDIR)/usr/lib
-	install -m644 credis.h $(DESTDIR)/usr/include
-	(cd $(DESTDIR)/usr/lib && { ln -s -f libcredis.so.0 libcredis.so || { rm -f libcredis.so && ln -s libcredis.so.0 libcredis.so; }; })
+	@echo "Installing library (to be done)"
 clean:
 	rm -f *.o *~ $(TARGETS)
